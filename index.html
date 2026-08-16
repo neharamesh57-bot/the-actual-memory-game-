@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Quest</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="game-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Memory Challenge</p>
+          <h1>Memory Quest</h1>
+        </div>
+        <button id="restartBtn" class="restart-btn" type="button">Restart</button>
+      </header>
+
+      <div class="status-bar">
+        <div class="pill">
+          <span>Level</span>
+          <strong id="levelLabel">1 / 10</strong>
+        </div>
+        <div class="pill">
+          <span>Moves</span>
+          <strong id="movesLabel">0</strong>
+        </div>
+      </div>
+
+      <div class="board-wrap">
+        <div id="board" class="board" aria-live="polite"></div>
+      </div>
+
+      <div id="message" class="message" aria-live="polite">
+        Match all cards to unlock the next level.
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

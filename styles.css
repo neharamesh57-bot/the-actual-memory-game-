@@ -1,0 +1,217 @@
+:root {
+  --bg-1: #031b18;
+  --bg-2: #0a332d;
+  --panel: rgba(9, 46, 39, 0.9);
+  --panel-strong: rgba(6, 31, 27, 0.95);
+  --card-back: #123f36;
+  --card-front: #d9f7d2;
+  --highlight: #7ef6a7;
+  --accent: #9fe6a3;
+  --text: #ebfff4;
+  --muted: #b8d5c3;
+  --shadow: rgba(0, 0, 0, 0.28);
+  --match: #5dd68d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  color: var(--text);
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.game-shell {
+  width: min(900px, 100%);
+  background: rgba(6, 30, 27, 0.9);
+  border: 1px solid rgba(158, 230, 163, 0.2);
+  border-radius: 28px;
+  box-shadow: 0 24px 64px var(--shadow);
+  padding: 28px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.7rem);
+}
+
+.restart-btn {
+  border: none;
+  background: linear-gradient(180deg, var(--highlight), #65d88f);
+  color: #062b26;
+  font-weight: 700;
+  font-size: 0.98rem;
+  border-radius: 999px;
+  padding: 12px 18px;
+  cursor: pointer;
+  box-shadow: 0 10px 18px rgba(125, 236, 165, 0.28);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.restart-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 24px rgba(125, 236, 165, 0.35);
+}
+
+.status-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--panel);
+  border: 1px solid rgba(158, 230, 163, 0.18);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+}
+
+.pill span {
+  color: var(--muted);
+}
+
+.board-wrap {
+  background: rgba(11, 55, 50, 0.9);
+  border-radius: 20px;
+  padding: 18px;
+  border: 1px solid rgba(158, 230, 163, 0.18);
+}
+
+.board {
+  display: grid;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  min-height: 90px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  perspective: 1000px;
+  border-radius: 18px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 90px;
+  transform-style: preserve-3d;
+  transition: transform 0.45s ease;
+  border-radius: 18px;
+}
+
+.card.is-flipped .card-inner,
+.card.is-matched .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  user-select: none;
+}
+
+.card-front {
+  background: var(--card-front);
+  color: #0d221d;
+  font-size: clamp(2rem, 2vw + 1rem, 2.8rem);
+  font-weight: 700;
+  box-shadow: inset 0 0 0 3px rgba(10, 51, 45, 0.12);
+  transform: rotateY(180deg);
+}
+
+.card-back {
+  background: linear-gradient(180deg, var(--card-back), #0d473f);
+  color: var(--text);
+  font-size: 2.3rem;
+  border: 1px solid rgba(158, 230, 163, 0.15);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.18);
+}
+
+.card.is-matched .card-front {
+  background: linear-gradient(180deg, #d0ffd9, var(--match));
+  box-shadow: 0 0 0 3px rgba(93, 214, 141, 0.3);
+}
+
+.card:disabled {
+  cursor: default;
+}
+
+.message {
+  margin-top: 20px;
+  background: rgba(17, 60, 52, 0.75);
+  border: 1px solid rgba(158, 230, 163, 0.12);
+  color: var(--muted);
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  text-align: center;
+  padding: 14px 18px;
+}
+
+@media (max-width: 640px) {
+  .game-shell {
+    padding: 18px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .restart-btn {
+    width: 100%;
+  }
+
+  .card {
+    min-height: 78px;
+  }
+
+  .card-inner {
+    min-height: 78px;
+  }
+}
